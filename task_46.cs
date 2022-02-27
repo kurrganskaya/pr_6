@@ -1,10 +1,19 @@
 // Задача 46: Написать программу масштабирования фигуры.
-Console.Write("Введите параметры фигуры: A - ");
-int a = int.Parse(Console.ReadLine());
-Console.Write("B - ");
-int b = int.Parse(Console.ReadLine());
-Console.WriteLine("Необходим масштаб 1 к ");
+Console.Write("Введите координаты вершин фигуры в формате (x,y): ");
+string coordinates = Console.ReadLine()
+                    .Replace("(", "")
+                    .Replace(")", "");
+Console.Write("Необходим масштаб 1 к ");
 int size = int.Parse(Console.ReadLine());
-double newA = a * size;
-double newB = b * size;
-Console.WriteLine($"Параметры фигуры в масштабе 1:{size} - {newA}x{newB}."); 
+Console.WriteLine(coordinates);
+
+var result = coordinates.Split(" ")
+                        .Select(item => item.Split(','))
+                        .Select(n => (x: int.Parse(n[0]), y: int.Parse(n[1])))
+                        .Select(point => (point.x * size, point.y * size))
+                        .ToArray();
+
+for (int i = 0; i < result.Length; i++)
+{
+    Console.WriteLine(result[i]);
+}
