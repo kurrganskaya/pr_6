@@ -5,15 +5,17 @@ string coordinates = Console.ReadLine()
                     .Replace(")", "");
 Console.Write("Необходим масштаб 1 к ");
 int size = int.Parse(Console.ReadLine());
-Console.WriteLine(coordinates);
+//Console.WriteLine(coordinates);
 
 var result = coordinates.Split(" ")
                         .Select(item => item.Split(','))
                         .Select(n => (x: int.Parse(n[0]), y: int.Parse(n[1])))
                         .Select(point => (point.x * size, point.y * size))
                         .ToArray();
-
+                    
+Console.Write($"Координаты вершин фигуры в масштабе 1:{size} - ");
 for (int i = 0; i < result.Length; i++)
 {
-    Console.WriteLine(result[i]);
+    Console.Write(result[i] + ", "); 
 }
+Console.WriteLine();
